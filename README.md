@@ -65,13 +65,12 @@ Here is a full example that subscribes to a SSE stream and writes the results to
 var React = require('react-native');
 var {
   AppRegistry,
-  StyleSheet,
   Text,
   View,
   DeviceEventEmitter,
 } = React;
 
-var EventSource = require('NativeModules').EventSourceClient;
+var EventSource = require('NativeModules').RNEventSource;
 
 var MyFancyApp = React.createClass({
   getDefaultProps: function() {
