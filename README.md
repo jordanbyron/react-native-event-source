@@ -17,7 +17,7 @@ $ npm install react-native-event-source --save
 ```
 
 In XCode add the library from
-`node_modules/react-native-event-source/EventSource.xcodeproj` to your project
+`node_modules/react-native-event-source/RNEventSource.xcodeproj` to your project
 then add `libRNEventSource` to your project's __Build Phase__ > __Link Binary With
 Libraries__ list.
 
