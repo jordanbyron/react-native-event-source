@@ -4,13 +4,14 @@
   "description": "A react-native interface for EventSource: Server-Sent Events for iOS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "scripts/postinstall"
   },
   "repository": {
     "type": "git",
-    "url": "github.com:jordanbyron/react-native-event-source.git"
+    "url": "https://github.com/jordanbyron/react-native-event-source"
   },
-  "author": "Jordan Byron <jordanbyron.com>",
+  "author": "Jordan Byron <jordan.byron@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "react-native": "^0.5.0"
