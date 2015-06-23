@@ -70,7 +70,8 @@ var {
   DeviceEventEmitter,
 } = React;
 
-var EventSource = require('NativeModules').RNEventSource;
+var EventSource = require('NativeModules').RNEventSource,
+    subscription;
 
 var MyFancyApp = React.createClass({
   getDefaultProps: function() {
@@ -79,7 +80,7 @@ var MyFancyApp = React.createClass({
     };
   },
   componentDidMount: function() {
-    var subscription = DeviceEventEmitter.addListener(
+    subscription = DeviceEventEmitter.addListener(
       'EventSourceMessage', function(message) {
         console.log(message.event);
       });
@@ -87,6 +88,7 @@ var MyFancyApp = React.createClass({
     EventSource.connectWithURL(this.props.url);
   },
   componentDidUmnount: function() {
+    EventSource.close();
     subscription.remove();
   },
   render: function() {

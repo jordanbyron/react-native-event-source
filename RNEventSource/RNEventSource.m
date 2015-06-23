@@ -53,12 +53,15 @@ RCT_EXPORT_METHOD(connectWithURL:(NSString *)URLString){
         RCTLogInfo(@"%@: %@", e.event, e.data);
         
         [self.bridge.eventDispatcher sendDeviceEventWithName:@"EventSourceMessage"
-                                                        body:@{@"event": e.event,
-                                                               // Guard against null values as NSMutableDictionary
-                                                               // expects objects
+                                                        body:@{@"event": e.event ? e.event : [NSNull null],
                                                                @"data": e.data ? e.data : [NSNull null]}];
     }];
     
+}
+
+RCT_EXPORT_METHOD(close){
+    [self.eventSource close];
+    RCTLogInfo(@"EventSource: Closed");
 }
 
 @end
