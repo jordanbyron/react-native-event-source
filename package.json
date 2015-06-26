@@ -1,6 +1,6 @@
 {
   "name": "react-native-event-source",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A react-native interface for EventSource: Server-Sent Events for iOS",
   "main": "index.js",
   "scripts": {
@@ -14,9 +14,9 @@
   "author": "Jordan Byron <jordan.byron@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "react-native": "^0.5.0"
+    "react-native": "0.*"
   },
   "peerDependencies": {
-    "react-native": "^0.5.0"
+    "react-native": "0.*"
   }
 }
