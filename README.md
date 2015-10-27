@@ -19,7 +19,7 @@ $ npm install react-native-event-source --save
 ## Usage
 
 ### Linking the Library
-In order to use quick actions you must first link the library to your project.  There's excellent documentation on how to do this in the [React Native Docs](http://facebook.github.io/react-native/docs/linking-libraries-ios.html#content).
+In order to use event source you must first link the library to your project.  There's excellent documentation on how to do this in the [React Native Docs](http://facebook.github.io/react-native/docs/linking-libraries-ios.html#content).
 
 ### Using in your project
 
