@@ -9,6 +9,7 @@
 #import "RCTBridge.h"
 #import "RCTConvert.h"
 #import "RCTEventDispatcher.h"
+#import "RCTUtils.h"
 #import "EventSource.h"
 
 #import "RNEventSource.h"
@@ -20,48 +21,54 @@
 
 RCT_EXPORT_MODULE();
 
-- (void)dealloc{
+- (void)invalidate
+{
     [self.eventSource close];
+    self.eventSource = nil;
+}
+
+- (void)dealloc{
+    [self invalidate];
 }
 
 RCT_EXPORT_METHOD(connectWithURL:(NSString *)URLString){
     NSURL *serverURL = [NSURL URLWithString:URLString];
-    
+
     self.eventSource = [EventSource eventSourceWithURL:serverURL];
-    
+
     [self.eventSource onOpen: ^(Event *e) {
-        RCTLogInfo(@"EventSource: Connected");
-        
+        RCTLogInfo(@"RNEventSource: onOpen");
+
         [self.bridge.eventDispatcher sendDeviceEventWithName:@"EventSourceConnected"
                                                         body:@{@"event": @"connected",
-                                                               // Guard against null values as NSMutableDictionary
-                                                               // expects objects
-                                                               @"data": e.data ? e.data : [NSNull null]}];
+                                                               @"data": [NSNull null]}];
     }];
-    
+
     [self.eventSource onError: ^(Event *e) {
-        RCTLogInfo(@"EventSource: Error %@: %@", e.event, e.data);
-        
+        RCTLogInfo(@"RNEventSource: onError (%@)", e.error);
+
         [self.bridge.eventDispatcher sendDeviceEventWithName:@"EventSourceError"
-                                                        body:@{@"event": @"error",
-                                                               // Guard against null values as NSMutableDictionary
-                                                               // expects objects
-                                                               @"data": e.data ? e.data : [NSNull null]}];
+                                                        body:@{
+                                                          @"domain": RCTNullIfNil(e.error.domain),
+                                                          @"code": [NSNumber numberWithInteger:e.error.code],
+                                                          @"description": e.error.userInfo[@"NSLocalizedDescription"]
+                                                        }];
+        [self close];
     }];
-    
+
     [self.eventSource onMessage: ^(Event *e) {
-        RCTLogInfo(@"%@: %@", e.event, e.data);
-        
+        RCTLogInfo(@"RNEventSource: onMessage (%@: %@)", e.event, e.data);
+
         [self.bridge.eventDispatcher sendDeviceEventWithName:@"EventSourceMessage"
-                                                        body:@{@"event": e.event ? e.event : [NSNull null],
-                                                               @"data": e.data ? e.data : [NSNull null]}];
+                                                        body:@{@"event": RCTNullIfNil(e.event),
+                                                               @"data": RCTNullIfNil(e.data)}];
     }];
-    
+
 }
 
 RCT_EXPORT_METHOD(close){
     [self.eventSource close];
-    RCTLogInfo(@"EventSource: Closed");
+    RCTLogInfo(@"RNEventSource: Closed");
 }
 
 @end
