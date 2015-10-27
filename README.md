@@ -10,20 +10,18 @@ see something I'm doing that makes you go :frowning: please let me know. I
 
 ## Installing
 
-First cd into your project's directory and grab the latest version of this code:
+Run the following command in your project's directory to grab the latest published version of this code:
 
 ```bash
 $ npm install react-native-event-source --save
 ```
 
-In XCode add the library from
-`node_modules/react-native-event-source/iOS/RNEventSource.xcodeproj` to your project
-then add `libRNEventSource` to your project's __Build Phase__ > __Link Binary With
-Libraries__ list.
+## Usage
 
-![adding to XCode](http://brentvatne.ca/images/packaging/7-add-link.gif)
+### Linking the Library
+In order to use quick actions you must first link the library to your project.  There's excellent documentation on how to do this in the [React Native Docs](http://facebook.github.io/react-native/docs/linking-libraries-ios.html#content).
 
-## Using in your javascript code
+### Using in your project
 
 First, you'll need to make sure `DeviceEventEmitter` is added to the list of
 requires for React.
