@@ -16,12 +16,9 @@ First cd into your project's directory and grab the latest version of this code:
 $ npm install react-native-event-source --save
 ```
 
-In XCode add the library from
-`node_modules/react-native-event-source/iOS/RNEventSource.xcodeproj` to your project
-then add `libRNEventSource` to your project's __Build Phase__ > __Link Binary With
-Libraries__ list.
+### Linking the Library
 
-![adding to XCode](http://brentvatne.ca/images/packaging/7-add-link.gif)
+In order to use event source you must first link the library to your project.  There's excellent documentation on how to do this in the [React Native Docs](http://facebook.github.io/react-native/docs/linking-libraries-ios.html#content). Make sure you do all steps including #3.
 
 ## Using in your javascript code
 
@@ -34,7 +31,6 @@ var {
   //....things you need plus....
   DeviceEventEmitter
 } = React;
-
 ```
 
 Next grab `RNEventSource` and assign it to a variable.
