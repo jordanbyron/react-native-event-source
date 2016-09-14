@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-echo "----------------------------------------------------------------------"
-echo " Thanks for installing react-native-event-source!"
-echo "" # Blank line
-echo " To finish adding this to your project follow these instructions"
-echo "" # Blank line
-echo " https://github.com/jordanbyron/react-native-event-source#installing"
-echo "----------------------------------------------------------------------"

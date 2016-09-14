@@ -4,8 +4,7 @@
   "description": "A react-native component for EventSource: Server-Sent Events for iOS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "scripts/postinstall"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
