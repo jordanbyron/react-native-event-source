@@ -10,7 +10,7 @@ see something I'm doing that makes you go :frowning: please let me know. I
 
 ## Installing
 
-First cd into your project's directory and grab the latest version of this code:
+Run the following command in your project's directory to grab the latest published version of this code:
 
 ```bash
 $ npm install react-native-event-source --save
@@ -20,7 +20,7 @@ $ npm install react-native-event-source --save
 
 In order to use event source you must first link the library to your project.  There's excellent documentation on how to do this in the [React Native Docs](http://facebook.github.io/react-native/docs/linking-libraries-ios.html#content). Make sure you do all steps including #3.
 
-## Using in your javascript code
+### Using in your project
 
 First, you'll need to make sure `DeviceEventEmitter` is added to the list of
 requires for React.
