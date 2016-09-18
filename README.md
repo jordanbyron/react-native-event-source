@@ -16,87 +16,31 @@ Run the following command in your project's directory to grab the latest publish
 $ npm install react-native-event-source --save
 ```
 
-### Linking the Library
-
-In order to use event source you must first link the library to your project.  There's excellent documentation on how to do this in the [React Native Docs](http://facebook.github.io/react-native/docs/linking-libraries-ios.html#content). Make sure you do all steps including #3.
-
 ### Using in your project
 
-First, you'll need to make sure `DeviceEventEmitter` is added to the list of
-requires for React.
-
 ```js
-var React = require('react-native');
-var {
-  //....things you need plus....
-  DeviceEventEmitter
-} = React;
-```
-
-Next grab `RNEventSource` and assign it to a variable.
-
-```js
-var EventSource = require('NativeModules').RNEventSource;
+import RNEventSource from 'react-native-event-source'
 ```
 
 Now you're ready to connect to your SSE endpoint and start streaming updates!
 :godmode:
-Use `DeviceEventEmitter` to listen for `EventSourceMessage` messages. You can
-also subscribe to `EventSourceConnected` and `EventSourceError` to be notified
-when your connection is established or encounters any errors.
 
 ```js
-var subscription = DeviceEventEmitter.addListener(
-  'EventSourceMessage', function(message) {
-    console.log(message.event);
-    console.log(message.data);
-  });
+const eventSource = new RNEventSource('https://my-sse.com/stream');
 
-EventSource.connectWithURL("http://your-sse-url.com/stream");
+eventSource.addEventListener('message', (event) {
+  console.log(event.type); // message
+  console.log(event.data);
+});
 ```
 
 Here is a full example that subscribes to a SSE stream and writes the results to `console.log`
 
 ```js
-var React = require('react-native');
-var {
-  AppRegistry,
-  Text,
-  View,
-  DeviceEventEmitter,
-} = React;
-
-var EventSource = require('NativeModules').RNEventSource,
-    subscription;
-
-var MyFancyApp = React.createClass({
-  getDefaultProps: function() {
-    return {
-      url: "http://your-sse-url.com/stream"
-    };
-  },
-  componentDidMount: function() {
-    subscription = DeviceEventEmitter.addListener(
-      'EventSourceMessage', function(message) {
-        console.log(message.event);
-      });
-
-    EventSource.connectWithURL(this.props.url);
-  },
-  componentDidUmnount: function() {
-    EventSource.close();
-    subscription.remove();
-  },
-  render: function() {
-    return (<View><Text>SSE in React!</Text></View>)
-  }
-});
+// TODO Write an example, including eventSource.removeAllListeners();
 ```
 
 ## License
-
-See [EventSource](https://github.com/neilco/EventSource/blob/master/LICENSE.txt)
-for additional license details.
 
 Copyright (c) 2015 Jordan Byron (http://github.com/jordanbyron/)
 
