@@ -37,7 +37,33 @@ eventSource.addEventListener('message', (event) {
 Here is a full example that subscribes to a SSE stream and writes the results to `console.log`
 
 ```js
-// TODO Write an example, including eventSource.removeAllListeners();
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+
+import RNEventSource from 'react-native-event-source';
+
+class MyApp extends Component {
+  componentDidMount() {
+    this.eventSource = new EventSource('https://sse.com/stream');
+
+    // Grab all events with the type of 'message'
+    this.eventSource.addEventListener('message', (data) => {
+      console.log(data.type); // message
+      console.log(data.data);
+    });
+  }
+  componentDidUmnount() {
+    this.eventSource.removeAllListeners();
+    this.eventSource.close();
+  }
+  render() {
+    return (
+      <View>
+        <Text>Streaming!</Text>
+      </View>
+    )
+  }
+}
 ```
 
 ## License
