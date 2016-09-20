@@ -1,3 +1,9 @@
+// EventSource.js
+// Original implementation from
+// https://github.com/remy/polyfills/blob/master/EventSource.js
+//
+// Copyright (c) 2010 Remy Sharp, http://remysharp.com
+
 var reTrim = /^(\s|\u00A0)+|(\s|\u00A0)+$/g;
 
 var EventSource = function (url) {
