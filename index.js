@@ -7,10 +7,11 @@ class RNEventSource {
     this.listeners   = [];
   }
   addEventListener (type, listener) {
-    const this.eventSource.addEventListener(type, listener),
-          remove = () => {
-            this.removeListener(type, listener);
-          }
+    this.eventSource.addEventListener(type, listener)
+
+    const remove = () => {
+      this.removeListener(type, listener);
+    }
 
     this.listeners.push({
       remove: remove, type: type, listener: listener
