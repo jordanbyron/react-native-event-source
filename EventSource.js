@@ -91,20 +91,23 @@ var EventSource = function (url) {
           }
 
           if (this.readyState == 4) pollAgain(interval);
-          // don't need to poll again, because we're long-loading
+
+        // don't need to poll again, because we're long-loading
         } else if (eventsource.readyState !== eventsource.CLOSED) {
           if (this.readyState == 4) { // and some other status
             // dispatch error
             eventsource.readyState = eventsource.CONNECTING;
-            eventsource.dispatchEvent('error',
-              { type: 'error', message: 'reconnecting' });
             pollAgain(interval);
           } else if (this.readyState == 0) { // likely aborted
             pollAgain(interval);
-          } else {
           }
         }
       };
+
+      xhr.onerror = function(e) {
+        eventsource.dispatchEvent('error',
+          { type: 'error', message: this.responseText });
+      }
 
       xhr.send();
 
