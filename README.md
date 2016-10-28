@@ -24,7 +24,7 @@ Now you're ready to connect to your SSE endpoint and start streaming updates!
 ```js
 const eventSource = new RNEventSource('https://my-sse.com/stream');
 
-eventSource.addEventListener('message', (event) {
+eventSource.addEventListener('message', (event) => {
   console.log(event.type); // message
   console.log(event.data);
 });
