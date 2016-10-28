@@ -95,8 +95,6 @@ var EventSource = function (url) {
         // don't need to poll again, because we're long-loading
         } else if (eventsource.readyState !== eventsource.CLOSED) {
           if (this.readyState == 4) { // and some other status
-            // dispatch error
-            eventsource.readyState = eventsource.CONNECTING;
             pollAgain(interval);
           } else if (this.readyState == 0) { // likely aborted
             pollAgain(interval);
@@ -105,6 +103,9 @@ var EventSource = function (url) {
       };
 
       xhr.onerror = function(e) {
+        // dispatch error
+        eventsource.readyState = eventsource.CONNECTING;
+
         eventsource.dispatchEvent('error',
           { type: 'error', message: this.responseText });
       }
