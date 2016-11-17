@@ -1,11 +1,10 @@
 {
   "name": "react-native-event-source",
-  "version": "0.0.4",
+  "version": "1.0.0-beta",
   "description": "A react-native component for EventSource: Server-Sent Events for iOS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "scripts/postinstall"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -14,16 +13,9 @@
   "keywords": [
     "react-native",
     "react-component",
-    "ios",
     "event-source",
     "sse"
   ],
   "author": "Jordan Byron <jordan.byron@gmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "react-native": ">=0.5.0"
-  },
-  "peerDependencies": {
-    "react-native": "0.*"
-  }
+  "license": "MIT"
 }
