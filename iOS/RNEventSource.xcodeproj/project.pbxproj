@@ -1,0 +1,375 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		911488971B28A9A700A81437 /* RNEventSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 911488961B28A9A700A81437 /* RNEventSource.h */; };
+		911488991B28A9A700A81437 /* RNEventSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 911488981B28A9A700A81437 /* RNEventSource.m */; };
+		9114889F1B28A9A700A81437 /* libRNEventSource.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 911488931B28A9A700A81437 /* libRNEventSource.a */; };
+		917EB0811B28B00200EBBC2F /* EventSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 917EB0801B28B00200EBBC2F /* EventSource.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		911488A01B28A9A700A81437 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9114888B1B28A9A700A81437 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 911488921B28A9A700A81437;
+			remoteInfo = RNEventSource;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		911488911B28A9A700A81437 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				911488971B28A9A700A81437 /* RNEventSource.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		911488931B28A9A700A81437 /* libRNEventSource.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNEventSource.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		911488961B28A9A700A81437 /* RNEventSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNEventSource.h; sourceTree = "<group>"; };
+		911488981B28A9A700A81437 /* RNEventSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNEventSource.m; sourceTree = "<group>"; };
+		9114889E1B28A9A700A81437 /* RNEventSourceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RNEventSourceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		911488A31B28A9A700A81437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		917EB07F1B28B00200EBBC2F /* EventSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSource.h; sourceTree = "<group>"; };
+		917EB0801B28B00200EBBC2F /* EventSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSource.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		911488901B28A9A700A81437 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9114889B1B28A9A700A81437 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9114889F1B28A9A700A81437 /* libRNEventSource.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9114888A1B28A9A700A81437 = {
+			isa = PBXGroup;
+			children = (
+				911488951B28A9A700A81437 /* RNEventSource */,
+				911488A21B28A9A700A81437 /* RNEventSourceTests */,
+				911488941B28A9A700A81437 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		911488941B28A9A700A81437 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				911488931B28A9A700A81437 /* libRNEventSource.a */,
+				9114889E1B28A9A700A81437 /* RNEventSourceTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		911488951B28A9A700A81437 /* RNEventSource */ = {
+			isa = PBXGroup;
+			children = (
+				917EB07F1B28B00200EBBC2F /* EventSource.h */,
+				917EB0801B28B00200EBBC2F /* EventSource.m */,
+				911488961B28A9A700A81437 /* RNEventSource.h */,
+				911488981B28A9A700A81437 /* RNEventSource.m */,
+			);
+			path = RNEventSource;
+			sourceTree = "<group>";
+		};
+		911488A21B28A9A700A81437 /* RNEventSourceTests */ = {
+			isa = PBXGroup;
+			children = (
+				911488A31B28A9A700A81437 /* Info.plist */,
+			);
+			path = RNEventSourceTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		911488921B28A9A700A81437 /* RNEventSource */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 911488A61B28A9A700A81437 /* Build configuration list for PBXNativeTarget "RNEventSource" */;
+			buildPhases = (
+				9114888F1B28A9A700A81437 /* Sources */,
+				911488901B28A9A700A81437 /* Frameworks */,
+				911488911B28A9A700A81437 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RNEventSource;
+			productName = RNEventSource;
+			productReference = 911488931B28A9A700A81437 /* libRNEventSource.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		9114889D1B28A9A700A81437 /* RNEventSourceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 911488A91B28A9A700A81437 /* Build configuration list for PBXNativeTarget "RNEventSourceTests" */;
+			buildPhases = (
+				9114889A1B28A9A700A81437 /* Sources */,
+				9114889B1B28A9A700A81437 /* Frameworks */,
+				9114889C1B28A9A700A81437 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				911488A11B28A9A700A81437 /* PBXTargetDependency */,
+			);
+			name = RNEventSourceTests;
+			productName = RNEventSourceTests;
+			productReference = 9114889E1B28A9A700A81437 /* RNEventSourceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9114888B1B28A9A700A81437 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Jordan Byron";
+				TargetAttributes = {
+					911488921B28A9A700A81437 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					9114889D1B28A9A700A81437 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = 9114888E1B28A9A700A81437 /* Build configuration list for PBXProject "RNEventSource" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9114888A1B28A9A700A81437;
+			productRefGroup = 911488941B28A9A700A81437 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				911488921B28A9A700A81437 /* RNEventSource */,
+				9114889D1B28A9A700A81437 /* RNEventSourceTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9114889C1B28A9A700A81437 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9114888F1B28A9A700A81437 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				911488991B28A9A700A81437 /* RNEventSource.m in Sources */,
+				917EB0811B28B00200EBBC2F /* EventSource.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9114889A1B28A9A700A81437 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		911488A11B28A9A700A81437 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 911488921B28A9A700A81437 /* RNEventSource */;
+			targetProxy = 911488A01B28A9A700A81437 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		911488A41B28A9A700A81437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		911488A51B28A9A700A81437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		911488A71B28A9A700A81437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		911488A81B28A9A700A81437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		911488AA1B28A9A700A81437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = RNEventSourceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = pw.RNEventSourceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		911488AB1B28A9A700A81437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = RNEventSourceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = pw.RNEventSourceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9114888E1B28A9A700A81437 /* Build configuration list for PBXProject "RNEventSource" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				911488A41B28A9A700A81437 /* Debug */,
+				911488A51B28A9A700A81437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		911488A61B28A9A700A81437 /* Build configuration list for PBXNativeTarget "RNEventSource" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				911488A71B28A9A700A81437 /* Debug */,
+				911488A81B28A9A700A81437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		911488A91B28A9A700A81437 /* Build configuration list for PBXNativeTarget "RNEventSourceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				911488AA1B28A9A700A81437 /* Debug */,
+				911488AB1B28A9A700A81437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9114888B1B28A9A700A81437 /* Project object */;
+}
