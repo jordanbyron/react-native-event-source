@@ -1,68 +1,98 @@
 react-native event source
 =========================
 
-Server-Sent Events for your React Native apps! Based on @remy's
-[EventSource polyfill](https://github.com/remy/polyfills/blob/master/EventSource.js).
+Server-Sent Events for your React Native apps! Based on @neilco's
+[EventSource](https://github.com/neilco/EventSource).
+
+_NOTE_: This is my first time playing with Obj-C and the iOS ecosystem. If you
+see something I'm doing that makes you go :frowning: please let me know. I
+:heart: pull requests.
 
 ## Installing
 
 Run the following command in your project's directory to grab the latest published version of this code:
 
-```bash
-$ npm install react-native-event-source --save
-```
+### Linking the Library
+In order to use quick actions you must first link the library to your project.  There's excellent documentation on how to do this in the [React Native Docs](http://facebook.github.io/react-native/docs/linking-libraries-ios.html#content).
 
 ### Using in your project
 
+First, you'll need to make sure `DeviceEventEmitter` is added to the list of
+requires for React.
+
 ```js
-import RNEventSource from 'react-native-event-source'
+var React = require('react-native');
+var {
+  //....things you need plus....
+  DeviceEventEmitter
+} = React;
+
+```
+
+Next grab `RNEventSource` and assign it to a variable.
+
+```js
+var EventSource = require('NativeModules').RNEventSource;
 ```
 
 Now you're ready to connect to your SSE endpoint and start streaming updates!
 :godmode:
+Use `DeviceEventEmitter` to listen for `EventSourceMessage` messages. You can
+also subscribe to `EventSourceConnected` and `EventSourceError` to be notified
+when your connection is established or encounters any errors.
 
 ```js
-const eventSource = new RNEventSource('https://my-sse.com/stream');
+var subscription = DeviceEventEmitter.addListener(
+  'EventSourceMessage', function(message) {
+    console.log(message.event);
+    console.log(message.data);
+  });
 
-eventSource.addEventListener('message', (event) => {
-  console.log(event.type); // message
-  console.log(event.data);
-});
+EventSource.connectWithURL("http://your-sse-url.com/stream");
 ```
 
 Here is a full example that subscribes to a SSE stream and writes the results to `console.log`
 
 ```js
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+var React = require('react-native');
+var {
+  AppRegistry,
+  Text,
+  View,
+  DeviceEventEmitter,
+} = React;
 
-import RNEventSource from 'react-native-event-source';
+var EventSource = require('NativeModules').RNEventSource,
+    subscription;
 
-class MyApp extends Component {
-  componentDidMount() {
-    this.eventSource = new EventSource('https://sse.com/stream');
+var MyFancyApp = React.createClass({
+  getDefaultProps: function() {
+    return {
+      url: "http://your-sse-url.com/stream"
+    };
+  },
+  componentDidMount: function() {
+    subscription = DeviceEventEmitter.addListener(
+      'EventSourceMessage', function(message) {
+        console.log(message.event);
+      });
 
-    // Grab all events with the type of 'message'
-    this.eventSource.addEventListener('message', (data) => {
-      console.log(data.type); // message
-      console.log(data.data);
-    });
+    EventSource.connectWithURL(this.props.url);
+  },
+  componentDidUmnount: function() {
+    EventSource.close();
+    subscription.remove();
+  },
+  render: function() {
+    return (<View><Text>SSE in React!</Text></View>)
   }
-  componentDidUmnount() {
-    this.eventSource.removeAllListeners();
-    this.eventSource.close();
-  }
-  render() {
-    return (
-      <View>
-        <Text>Streaming!</Text>
-      </View>
-    )
-  }
-}
+});
 ```
 
 ## License
+
+See [EventSource](https://github.com/neilco/EventSource/blob/master/LICENSE.txt)
+for additional license details.
 
 Copyright (c) 2015 Jordan Byron (http://github.com/jordanbyron/)
 
