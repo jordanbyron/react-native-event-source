@@ -1,9 +1,10 @@
 import EventSource from './EventSource'
 
 class RNEventSource {
-  constructor(url) {
+  constructor(url, options) {
     this.url         = url;
-    this.eventSource = new EventSource(url);
+    this.options     = options;
+    this.eventSource = new EventSource(url, options);
     this.listeners   = [];
   }
   addEventListener (type, listener) {

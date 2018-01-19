@@ -22,7 +22,8 @@ Now you're ready to connect to your SSE endpoint and start streaming updates!
 :godmode:
 
 ```js
-const eventSource = new RNEventSource('https://my-sse.com/stream');
+const options = { headers: { Authorization: 'Baerer ...' } };
+const eventSource = new RNEventSource('https://my-sse.com/stream', options);
 
 eventSource.addEventListener('message', (event) => {
   console.log(event.type); // message
@@ -40,7 +41,8 @@ import RNEventSource from 'react-native-event-source';
 
 class MyApp extends Component {
   componentDidMount() {
-    this.eventSource = new EventSource('https://sse.com/stream');
+    const options = { headers: { Authorization: 'Baerer ...' } };
+    this.eventSource = new EventSource('https://sse.com/stream', options);
 
     // Grab all events with the type of 'message'
     this.eventSource.addEventListener('message', (data) => {
