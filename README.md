@@ -30,6 +30,13 @@ eventSource.addEventListener('message', (event) => {
 });
 ```
 
+You can also optionally pass a second argument when initializing `RNEventSource` to pass in header values:
+
+```js
+const options = { headers: { Authorization: 'Baerer ...' } };
+const eventSource = new RNEventSource('https://my-sse.com/stream', options);
+```
+
 Here is a full example that subscribes to a SSE stream and writes the results to `console.log`
 
 ```js

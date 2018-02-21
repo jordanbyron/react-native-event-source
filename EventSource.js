@@ -6,7 +6,7 @@
 
 var reTrim = /^(\s|\u00A0)+|(\s|\u00A0)+$/g;
 
-var EventSource = function (url) {
+var EventSource = function (url, options) {
   var eventsource = this,
       interval = 500, // polling interval
       lastEventId = null,
@@ -18,6 +18,7 @@ var EventSource = function (url) {
   }
 
   this.URL = url;
+  this.OPTIONS = options;
   this.readyState = this.CONNECTING;
   this._pollTimer = null;
   this._xhr = null;
@@ -35,6 +36,11 @@ var EventSource = function (url) {
       // NOTE: IE7 and upwards support
       var xhr = new XMLHttpRequest();
       xhr.open('GET', eventsource.URL, true);
+      if (eventsource.OPTIONS && eventsource.OPTIONS.headers) {
+        Object.keys(eventsource.OPTIONS.headers).forEach(key => {
+          xhr.setRequestHeader(key, eventsource.OPTIONS.headers[key]);
+        });
+      }
       xhr.setRequestHeader('Accept', 'text/event-stream');
       xhr.setRequestHeader('Cache-Control', 'no-cache');
       // we must make use of this on the server side if we're working with Android - because they don't trigger
