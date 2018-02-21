@@ -69,6 +69,15 @@ class MyApp extends Component {
 }
 ```
 
+## What  about authentication?
+
+You can pass extra options like:
+
+```javascript
+const options = { headers: { Authorization: 'Baerer ...' } };
+this.eventSource = new EventSource('https://sse.com/stream', options);
+```
+
 ## License
 
 Copyright (c) 2015 Jordan Byron (http://github.com/jordanbyron/)
