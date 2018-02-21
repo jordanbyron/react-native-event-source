@@ -1,12 +1,8 @@
 react-native event source
 =========================
 
-Server-Sent Events for your React Native apps! Based on @neilco's
-[EventSource](https://github.com/neilco/EventSource).
-
-_NOTE_: This is my first time playing with Obj-C and the iOS ecosystem. If you
-see something I'm doing that makes you go :frowning: please let me know. I
-:heart: pull requests.
+Server-Sent Events for your React Native apps! Based on @remy's
+[EventSource polyfill](https://github.com/remy/polyfills/blob/master/EventSource.js).
 
 ## Installing
 
@@ -28,7 +24,7 @@ Now you're ready to connect to your SSE endpoint and start streaming updates!
 ```js
 const eventSource = new RNEventSource('https://my-sse.com/stream');
 
-eventSource.addEventListener('message', (event) {
+eventSource.addEventListener('message', (event) => {
   console.log(event.type); // message
   console.log(event.data);
 });
