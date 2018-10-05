@@ -33,7 +33,7 @@ eventSource.addEventListener('message', (event) => {
 You can also optionally pass a second argument when initializing `RNEventSource` to pass in header values:
 
 ```js
-const options = { headers: { Authorization: 'Baerer ...' } };
+const options = { headers: { Authorization: 'Bearer ...' } };
 const eventSource = new RNEventSource('https://my-sse.com/stream', options);
 ```
 
@@ -55,7 +55,7 @@ class MyApp extends Component {
       console.log(data.data);
     });
   }
-  componentDidUmnount() {
+  componentDidUnmount() {
     this.eventSource.removeAllListeners();
     this.eventSource.close();
   }
