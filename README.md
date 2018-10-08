@@ -55,7 +55,7 @@ class MyApp extends Component {
       console.log(data.data);
     });
   }
-  componentDidUnmount() {
+  componentWillUnmount() {
     this.eventSource.removeAllListeners();
     this.eventSource.close();
   }
