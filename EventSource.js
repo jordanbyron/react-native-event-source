@@ -10,6 +10,7 @@ var EventSource = function (url, options) {
   var eventsource = this,
       interval = 500, // polling interval
       lastEventId = null,
+      retry = 0,
       cache = '',
       eventType;
 
