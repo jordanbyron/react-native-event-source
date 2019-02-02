@@ -68,6 +68,7 @@ var EventSource = function (url, options) {
           var parts = responseText.substr(cache.length).split("\n"),
               data = [],
               i = 0,
+              retry = 0,
               line = '';
 
           cache = responseText;
