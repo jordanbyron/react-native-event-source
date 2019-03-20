@@ -50,7 +50,10 @@ var EventSource = function (url, options) {
       if (lastEventId != null) xhr.setRequestHeader('Last-Event-ID', lastEventId);
       cache = '';
 
-      xhr.timeout = 50000;
+      xhr.timeout = (this.OPTIONS && this.OPTIONS.timeout !== undefined)
+          ? this.OPTIONS.timeout
+          : 50000
+
       xhr.onreadystatechange = function () {
         if (this.readyState == 3 || (this.readyState == 4 && this.status == 200)) {
           // on success
@@ -119,9 +122,11 @@ var EventSource = function (url, options) {
 
       xhr.send();
 
-      setTimeout(function () {
-        if (true || xhr.readyState == 3) xhr.abort();
-      }, xhr.timeout);
+      if (xhr.timeout > 0) {
+        setTimeout(function () {
+          if (true || xhr.readyState == 3) xhr.abort();
+        }, xhr.timeout);
+      }
 
       eventsource._xhr = xhr;
 
