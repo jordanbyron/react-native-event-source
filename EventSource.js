@@ -120,7 +120,11 @@ var EventSource = function (url, options) {
           { type: 'error', message: this.responseText });
       }
 
-      xhr.send(eventsource.OPTIONS.body || undefined);
+      if (eventsource.OPTIONS.body) {
+        xhr.send(eventsource.OPTIONS.body);
+      } else {
+        xhr.send();
+      }
 
       if (xhr.timeout > 0) {
         setTimeout(function () {
