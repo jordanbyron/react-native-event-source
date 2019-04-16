@@ -35,7 +35,7 @@ var EventSource = function (url, options) {
 
       // NOTE: IE7 and upwards support
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', eventsource.URL, true);
+      xhr.open(eventsource.OPTIONS.method || 'GET', eventsource.URL, true);
       if (eventsource.OPTIONS && eventsource.OPTIONS.headers) {
         Object.keys(eventsource.OPTIONS.headers).forEach(key => {
           xhr.setRequestHeader(key, eventsource.OPTIONS.headers[key]);
@@ -120,7 +120,11 @@ var EventSource = function (url, options) {
           { type: 'error', message: this.responseText });
       }
 
-      xhr.send();
+      if (eventsource.OPTIONS.body) {
+        xhr.send(eventsource.OPTIONS.body);
+      } else {
+        xhr.send();
+      }
 
       if (xhr.timeout > 0) {
         setTimeout(function () {
