@@ -1,7 +1,7 @@
 import EventSource from './EventSource'
 
 class RNEventSource {
-  constructor(url, options) {
+  constructor(url, options={}) {
     this.url         = url;
     this.options     = options;
     this.eventSource = new EventSource(url, options);
