@@ -6,12 +6,12 @@
 
 var reTrim = /^(\s|\u00A0)+|(\s|\u00A0)+$/g;
 
-var EventSource = function (url, options) {
+var EventSource = function(url, options) {
   var eventsource = this,
-      interval = 500, // polling interval
-      lastEventId = null,
-      cache = '',
-      eventType;
+    interval = 500, // polling interval
+    lastEventId = null,
+    lastIndexProcessed = 0,
+    eventType;
 
   if (!url || typeof url != 'string') {
     throw new SyntaxError('Not enough arguments');
@@ -24,13 +24,14 @@ var EventSource = function (url, options) {
   this._xhr = null;
 
   function pollAgain(interval) {
-    eventsource._pollTimer = setTimeout(function () {
+    eventsource._pollTimer = setTimeout(function() {
       poll.call(eventsource);
     }, interval);
   }
 
   function poll() {
-    try { // force hiding of the error message... insane?
+    try {
+      // force hiding of the error message... insane?
       if (eventsource.readyState == eventsource.CLOSED) return;
 
       // NOTE: IE7 and upwards support
@@ -47,15 +48,20 @@ var EventSource = function (url, options) {
       // readychange until the server connection is closed
       xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-      if (lastEventId != null) xhr.setRequestHeader('Last-Event-ID', lastEventId);
-      cache = '';
+      if (lastEventId != null)
+        xhr.setRequestHeader('Last-Event-ID', lastEventId);
+      lastIndexProcessed = 0;
 
-      xhr.timeout = (this.OPTIONS && this.OPTIONS.timeout !== undefined)
+      xhr.timeout =
+        this.OPTIONS && this.OPTIONS.timeout !== undefined
           ? this.OPTIONS.timeout
-          : 50000
+          : 50000;
 
-      xhr.onreadystatechange = function () {
-        if (this.readyState == 3 || (this.readyState == 4 && this.status == 200)) {
+      xhr.onreadystatechange = function() {
+        if (
+          this.readyState == 3 ||
+          (this.readyState == 4 && this.status == 200)
+        ) {
           // on success
           if (eventsource.readyState == eventsource.CONNECTING) {
             eventsource.readyState = eventsource.OPEN;
@@ -68,13 +74,14 @@ var EventSource = function (url, options) {
           } catch (e) {}
 
           // process this.responseText
-          var parts = responseText.substr(cache.length).split("\n"),
-              data = [],
-              i = 0,
-              retry = 0,
-              line = '';
+          var parts = responseText.substr(lastIndexProcessed).split('\n'),
+            data = [],
+            i = 0,
+            retry = 0,
+            line = '';
+          lastIndexProcessed = responseText.lastIndexOf('\n\n') + 2;
 
-          cache = responseText;
+          seenBytes = responseText.length;
 
           // TODO handle 'event' (for buffer name), retry
           for (; i < parts.length; i++) {
@@ -83,16 +90,23 @@ var EventSource = function (url, options) {
               eventType = line.replace(/event:?\s*/, '');
             } else if (line.indexOf('retry') == 0) {
               retry = parseInt(line.replace(/retry:?\s*/, ''));
-              if(!isNaN(retry)) { interval = retry; }
+              if (!isNaN(retry)) {
+                interval = retry;
+              }
             } else if (line.indexOf('data') == 0) {
               data.push(line.replace(/data:?\s*/, ''));
             } else if (line.indexOf('id:') == 0) {
               lastEventId = line.replace(/id:?\s*/, '');
-            } else if (line.indexOf('id') == 0) { // this resets the id
+            } else if (line.indexOf('id') == 0) {
+              // this resets the id
               lastEventId = null;
             } else if (line == '') {
               if (data.length) {
-                var event = new MessageEvent(data.join('\n'), eventsource.url, lastEventId);
+                var event = new MessageEvent(
+                  data.join('\n'),
+                  eventsource.url,
+                  lastEventId,
+                );
                 eventsource.dispatchEvent(eventType || 'message', event);
                 data = [];
                 eventType = undefined;
@@ -102,11 +116,13 @@ var EventSource = function (url, options) {
 
           if (this.readyState == 4) pollAgain(interval);
 
-        // don't need to poll again, because we're long-loading
+          // don't need to poll again, because we're long-loading
         } else if (eventsource.readyState !== eventsource.CLOSED) {
-          if (this.readyState == 4) { // and some other status
+          if (this.readyState == 4) {
+            // and some other status
             pollAgain(interval);
-          } else if (this.readyState == 0) { // likely aborted
+          } else if (this.readyState == 0) {
+            // likely aborted
             pollAgain(interval);
           }
         }
@@ -116,9 +132,11 @@ var EventSource = function (url, options) {
         // dispatch error
         eventsource.readyState = eventsource.CONNECTING;
 
-        eventsource.dispatchEvent('error',
-          { type: 'error', message: this.responseText });
-      }
+        eventsource.dispatchEvent('error', {
+          type: 'error',
+          message: this.responseText,
+        });
+      };
 
       if (eventsource.OPTIONS.body) {
         xhr.send(eventsource.OPTIONS.body);
@@ -127,23 +145,23 @@ var EventSource = function (url, options) {
       }
 
       if (xhr.timeout > 0) {
-        setTimeout(function () {
+        setTimeout(function() {
           if (true || xhr.readyState == 3) xhr.abort();
         }, xhr.timeout);
       }
 
       eventsource._xhr = xhr;
-
-    } catch (e) { // in an attempt to silence the errors
+    } catch (e) {
+      // in an attempt to silence the errors
       eventsource.dispatchEvent('error', { type: 'error', data: e.message }); // ???
     }
-  };
+  }
 
   poll(); // init now
 };
 
 EventSource.prototype = {
-  close: function () {
+  close: function() {
     // closes the connection - disabling the polling
     this.readyState = this.CLOSED;
     clearInterval(this._pollTimer);
@@ -152,7 +170,7 @@ EventSource.prototype = {
   CONNECTING: 0,
   OPEN: 1,
   CLOSED: 2,
-  dispatchEvent: function (type, event) {
+  dispatchEvent: function(type, event) {
     var handlers = this['_' + type + 'Handlers'];
     if (handlers) {
       for (var i = 0; i < handlers.length; i++) {
@@ -164,14 +182,14 @@ EventSource.prototype = {
       this['on' + type].call(this, event);
     }
   },
-  addEventListener: function (type, handler) {
+  addEventListener: function(type, handler) {
     if (!this['_' + type + 'Handlers']) {
       this['_' + type + 'Handlers'] = [];
     }
 
     this['_' + type + 'Handlers'].push(handler);
   },
-  removeEventListener: function (type, handler) {
+  removeEventListener: function(type, handler) {
     var handlers = this['_' + type + 'Handlers'];
     if (!handlers) {
       return;
@@ -187,10 +205,10 @@ EventSource.prototype = {
   onmessage: null,
   onopen: null,
   readyState: 0,
-  URL: ''
+  URL: '',
 };
 
-var MessageEvent = function (data, origin, lastEventId) {
+var MessageEvent = function(data, origin, lastEventId) {
   this.data = data;
   this.origin = origin;
   this.lastEventId = lastEventId || '';
@@ -200,7 +218,7 @@ MessageEvent.prototype = {
   data: null,
   type: 'message',
   lastEventId: '',
-  origin: ''
+  origin: '',
 };
 
 export default EventSource;
