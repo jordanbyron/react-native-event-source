@@ -81,8 +81,6 @@ var EventSource = function(url, options) {
             line = '';
           lastIndexProcessed = responseText.lastIndexOf('\n\n') + 2;
 
-          seenBytes = responseText.length;
-
           // TODO handle 'event' (for buffer name), retry
           for (; i < parts.length; i++) {
             line = parts[i].replace(reTrim, '');
