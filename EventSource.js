@@ -10,7 +10,7 @@ var EventSource = function(url, options) {
   var eventsource = this,
     interval = 500, // polling interval
     lastEventId = null,
-    cache = '',
+    lastIndexProcessed = 0,
     eventType;
 
   if (!url || typeof url != 'string') {
@@ -50,7 +50,7 @@ var EventSource = function(url, options) {
 
       if (lastEventId != null)
         xhr.setRequestHeader('Last-Event-ID', lastEventId);
-      cache = '';
+      lastIndexProcessed = 0;
 
       xhr.timeout =
         this.OPTIONS && this.OPTIONS.timeout !== undefined
@@ -74,13 +74,12 @@ var EventSource = function(url, options) {
           } catch (e) {}
 
           // process this.responseText
-          var parts = responseText.substr(cache.length).split('\n'),
+          var parts = responseText.substr(lastIndexProcessed).split('\n'),
             data = [],
             i = 0,
             retry = 0,
             line = '';
-
-          cache = responseText;
+          lastIndexProcessed = responseText.lastIndexOf('\n\n') + 2;
 
           // TODO handle 'event' (for buffer name), retry
           for (; i < parts.length; i++) {
