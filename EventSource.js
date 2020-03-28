@@ -53,8 +53,8 @@ var EventSource = function(url, options) {
       lastIndexProcessed = 0;
 
       xhr.timeout =
-        this.OPTIONS && this.OPTIONS.timeout !== undefined
-          ? this.OPTIONS.timeout
+        eventsource.OPTIONS && eventsource.OPTIONS.timeout !== undefined
+          ? eventsource.OPTIONS.timeout
           : 50000;
 
       xhr.onreadystatechange = function() {
