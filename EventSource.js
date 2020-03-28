@@ -53,14 +53,14 @@ var EventSource = function(url, options) {
       lastIndexProcessed = 0;
 
       xhr.timeout =
-        this.OPTIONS && this.OPTIONS.timeout !== undefined
-          ? this.OPTIONS.timeout
+        eventsource.OPTIONS && eventsource.OPTIONS.timeout !== undefined
+          ? eventsource.OPTIONS.timeout
           : 50000;
 
       xhr.onreadystatechange = function() {
         if (
-          this.readyState == 3 ||
-          (this.readyState == 4 && this.status == 200)
+          eventsource.readyState == 3 ||
+          (eventsource.readyState == 4 && eventsource.status == 200)
         ) {
           // on success
           if (eventsource.readyState == eventsource.CONNECTING) {
@@ -112,14 +112,14 @@ var EventSource = function(url, options) {
             }
           }
 
-          if (this.readyState == 4) pollAgain(interval);
+          if (eventsource.readyState == 4) pollAgain(interval);
 
           // don't need to poll again, because we're long-loading
         } else if (eventsource.readyState !== eventsource.CLOSED) {
-          if (this.readyState == 4) {
+          if (eventsource.readyState == 4) {
             // and some other status
             pollAgain(interval);
-          } else if (this.readyState == 0) {
+          } else if (eventsource.readyState == 0) {
             // likely aborted
             pollAgain(interval);
           }
