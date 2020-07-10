@@ -118,6 +118,11 @@ var EventSource = function(url, options) {
         } else if (eventsource.readyState !== eventsource.CLOSED) {
           if (this.readyState == 4) {
             // and some other status
+            eventsource.dispatchEvent('connection-error', {
+              type: 'connection-error',
+              status: this.status,
+              message: this.responseText,
+            });
             pollAgain(interval);
           } else if (this.readyState == 0) {
             // likely aborted
