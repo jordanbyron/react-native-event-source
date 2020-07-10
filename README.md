@@ -54,6 +54,12 @@ class MyApp extends Component {
       console.log(data.type); // message
       console.log(data.data);
     });
+
+    // Grab connection error events with the type of 'connection-error'
+    this.eventSource.addEventListener('connection-error', (data) => {
+      console.log(data.message); // message
+      console.log(data.status); // http status code
+    });
   }
   componentWillUnmount() {
     this.eventSource.removeAllListeners();
