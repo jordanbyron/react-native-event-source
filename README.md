@@ -12,6 +12,12 @@ Run the following command in your project's directory to grab the latest publish
 $ npm install react-native-event-source --save
 ```
 
+Install type definitions in the following way:
+
+```bash
+$ npm install --save-dev @types/react-native-event-source
+```
+
 ### Using in your project
 
 ```js
