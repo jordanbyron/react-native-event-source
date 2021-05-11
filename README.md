@@ -47,7 +47,7 @@ import RNEventSource from 'react-native-event-source';
 
 class MyApp extends Component {
   componentDidMount() {
-    this.eventSource = new EventSource('https://sse.com/stream');
+    this.eventSource = new RNEventSource('https://sse.com/stream');
 
     // Grab all events with the type of 'message'
     this.eventSource.addEventListener('message', (data) => {
