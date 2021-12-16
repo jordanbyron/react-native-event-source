@@ -34,7 +34,7 @@ var EventSource = function(url, options) {
       // force hiding of the error message... insane?
       if (eventsource.readyState == eventsource.CLOSED) return;
 
-      // NOTE: IE7 and upwards support
+      // NOTE: IE8 and upwards support
       var xhr = new XMLHttpRequest();
       xhr.open(eventsource.OPTIONS.method || 'GET', eventsource.URL, true);
       if (eventsource.OPTIONS && eventsource.OPTIONS.headers) {
